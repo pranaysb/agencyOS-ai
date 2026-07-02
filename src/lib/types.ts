@@ -16,7 +16,7 @@ export type Deal = {
   brand_name: string;
   budget: number;
   campaign_dates: string;
-  deliverables: string[];
+  deliverables: string[] | string;
   creator_requirements: string;
   payment_terms: string;
   category: string;
@@ -28,15 +28,15 @@ export type Deal = {
 export type Creator = {
   id: string;
   name: string;
-  niche: string[];
+  niche: string[] | string;
   followers_count: number;
   language: string;
-  content_format: string[];
+  content_format: string[] | string;
   audience_gender: string;
   audience_age_range: string;
   min_rate: number;
   max_rate: number;
   instagram_handle: string;
   engagement_rate: number;
-  past_brands: string[];
+  past_brands: string[] | string;
 };
