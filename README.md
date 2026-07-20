@@ -1,3 +1,6 @@
+
+Project in development currently because first it worked on Railway but now shifting base to Render
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
