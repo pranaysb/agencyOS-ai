@@ -110,82 +110,90 @@ export default function DashboardPage() {
         </p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card className="border-border bg-card">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <Card className="border-border/60 bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Leads</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Total Leads</CardTitle>
+            <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+              <Users className="h-4 w-4 text-primary" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{totalLeads}</div>
+            <div className="text-3xl font-serif font-bold text-foreground">{totalLeads}</div>
           </CardContent>
         </Card>
-        <Card className="border-border bg-card">
+        <Card className="border-border/60 bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Deals</CardTitle>
-            <Briefcase className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Active Deals</CardTitle>
+            <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+              <Briefcase className="h-4 w-4 text-primary" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{activeDealsCount}</div>
+            <div className="text-3xl font-serif font-bold text-foreground">{activeDealsCount}</div>
           </CardContent>
         </Card>
-        <Card className="border-border bg-card">
+        <Card className="border-border/60 bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Creators Matched</CardTitle>
-            <Sparkles className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Creators Matched</CardTitle>
+            <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+              <Sparkles className="h-4 w-4 text-primary" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{creatorsMatchedCount}</div>
+            <div className="text-3xl font-serif font-bold text-foreground">{creatorsMatchedCount}</div>
           </CardContent>
         </Card>
-        <Card className="border-border bg-card">
+        <Card className="border-border/60 bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Pending Actions</CardTitle>
-            <Activity className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Pending Actions</CardTitle>
+            <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+              <Activity className="h-4 w-4 text-primary" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{pendingActionsCount}</div>
+            <div className="text-3xl font-serif font-bold text-foreground">{pendingActionsCount}</div>
           </CardContent>
         </Card>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="border-border bg-card lg:col-span-4">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
+        <Card className="border-border/60 bg-white/50 backdrop-blur-sm shadow-sm lg:col-span-4">
           <CardHeader>
             <CardTitle>Recent Leads</CardTitle>
           </CardHeader>
           <CardContent>
             <Table>
               <TableHeader>
-                <TableRow className="border-border hover:bg-transparent">
-                  <TableHead>Sender</TableHead>
-                  <TableHead>Category</TableHead>
-                  <TableHead>Urgency</TableHead>
-                  <TableHead>Status</TableHead>
+                <TableRow className="border-b border-border/50 hover:bg-transparent">
+                  <TableHead className="font-medium text-muted-foreground uppercase text-xs tracking-wider">Sender</TableHead>
+                  <TableHead className="font-medium text-muted-foreground uppercase text-xs tracking-wider">Category</TableHead>
+                  <TableHead className="font-medium text-muted-foreground uppercase text-xs tracking-wider">Urgency</TableHead>
+                  <TableHead className="font-medium text-muted-foreground uppercase text-xs tracking-wider">Status</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {recentLeads.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={4} className="text-center text-muted-foreground py-6">
+                    <TableCell colSpan={4} className="text-center text-muted-foreground py-8 border-none">
                       No recent leads found.
                     </TableCell>
                   </TableRow>
                 ) : (
                   recentLeads.map((lead) => (
-                    <TableRow key={lead.id} className="border-border hover:bg-muted/50 transition-colors">
-                      <TableCell className="font-medium">{lead.sender_name}</TableCell>
+                    <TableRow key={lead.id} className="border-b border-border/50 hover:bg-black/[0.02] transition-colors border-none group">
+                      <TableCell className="font-medium group-hover:text-primary transition-colors">{lead.sender_name}</TableCell>
                       <TableCell>
-                        <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">
+                        <Badge variant="outline" className="bg-primary/5 text-primary border-primary/10 rounded-full font-medium">
                           {lead.category}
                         </Badge>
                       </TableCell>
                       <TableCell>
-                        <Badge variant="outline" className={getUrgencyColor(lead.urgency)}>
+                        <Badge variant="outline" className={`${getUrgencyColor(lead.urgency)} rounded-full font-medium`}>
                           {lead.urgency}
                         </Badge>
                       </TableCell>
-                      <TableCell className="text-muted-foreground capitalize">{lead.status}</TableCell>
+                      <TableCell className="text-muted-foreground capitalize font-medium">{lead.status}</TableCell>
                     </TableRow>
                   ))
                 )}
@@ -194,27 +202,27 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-border bg-card lg:col-span-3">
+        <Card className="border-border/60 bg-white/50 backdrop-blur-sm shadow-sm lg:col-span-3">
           <CardHeader>
             <CardTitle>Active Deals</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
             {activeDeals.length === 0 ? (
-              <p className="text-center text-muted-foreground py-6">No active deals right now.</p>
+              <p className="text-center text-muted-foreground py-8">No active deals right now.</p>
             ) : (
               activeDeals.map((deal) => (
-                <div key={deal.id} className="flex items-center justify-between">
+                <div key={deal.id} className="flex items-center justify-between group p-2 -mx-2 rounded-xl hover:bg-black/[0.02] transition-colors">
                   <div className="space-y-1">
-                    <p className="text-sm font-medium leading-none">{deal.brand_name}</p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm font-semibold leading-none group-hover:text-primary transition-colors">{deal.brand_name}</p>
+                    <p className="text-xs font-medium text-muted-foreground">
                       Score: {deal.deal_score}/10
                     </p>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="text-sm font-medium">
+                    <div className="text-sm font-semibold">
                       ${deal.budget?.toLocaleString() || 0}
                     </div>
-                    <Badge variant="secondary" className="bg-secondary text-secondary-foreground capitalize">
+                    <Badge variant="secondary" className="bg-secondary/50 text-secondary-foreground capitalize rounded-full">
                       {deal.status}
                     </Badge>
                   </div>

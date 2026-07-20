@@ -61,10 +61,10 @@ export default function DealsPage() {
         {columns.map((column) => {
           const columnDeals = deals.filter((d) => d.status === column.id);
           return (
-            <div key={column.id} className="flex flex-col gap-4">
-              <div className="flex items-center justify-between pb-2 border-b border-border">
-                <h2 className="font-semibold text-lg">{column.title}</h2>
-                <Badge variant="secondary" className="bg-secondary">
+            <div key={column.id} className="flex flex-col gap-6">
+              <div className="flex items-center justify-between pb-3 border-b border-border/50">
+                <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">{column.title}</h2>
+                <Badge variant="secondary" className="bg-secondary/50 rounded-full font-medium">
                   {columnDeals.length}
                 </Badge>
               </div>
@@ -75,21 +75,21 @@ export default function DealsPage() {
                     Loading deals...
                   </div>
                 ) : columnDeals.length === 0 ? (
-                  <div className="text-center py-8 text-muted-foreground text-sm border border-dashed border-border rounded-lg">
+                  <div className="text-center py-8 text-muted-foreground text-sm border border-dashed border-border/60 rounded-xl bg-white/30 backdrop-blur-sm">
                     No deals in this stage
                   </div>
                 ) : (
                   columnDeals.map((deal) => (
-                    <Card key={deal.id} className="border-border bg-card shadow-sm hover:shadow-md transition-shadow">
+                    <Card key={deal.id} className="border-border/60 bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 rounded-xl group">
                       <CardHeader className="pb-3">
                         <div className="flex justify-between items-start">
-                          <CardTitle className="text-xl">{deal.brand_name}</CardTitle>
-                          <Badge variant="outline" className={getUrgencyColor(deal.urgency)}>
+                          <CardTitle className="text-xl font-serif group-hover:text-primary transition-colors">{deal.brand_name}</CardTitle>
+                          <Badge variant="outline" className={`${getUrgencyColor(deal.urgency)} rounded-full font-medium`}>
                             {deal.urgency}
                           </Badge>
                         </div>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
-                          <Badge variant="secondary" className="text-xs bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1 font-medium">
+                          <Badge variant="secondary" className="text-xs bg-primary/5 text-primary rounded-full hover:bg-primary/10 transition-colors">
                             Score: {deal.deal_score}
                           </Badge>
                           <span>•</span>
@@ -98,21 +98,21 @@ export default function DealsPage() {
                       </CardHeader>
                       
                       <CardContent className="space-y-4 text-sm pb-4">
-                        <div className="flex items-center gap-2 font-medium text-foreground">
+                        <div className="flex items-center gap-2 font-semibold text-foreground">
                           <DollarSign className="h-4 w-4 text-muted-foreground" />
                           ${deal.budget?.toLocaleString() || 0}
                         </div>
-                        <div className="flex items-center gap-2 text-muted-foreground">
+                        <div className="flex items-center gap-2 text-muted-foreground font-medium">
                           <Calendar className="h-4 w-4" />
                           {deal.campaign_dates}
                         </div>
                         
-                        <Separator className="bg-border" />
+                        <Separator className="bg-border/50" />
                         
-                        <div className="space-y-2">
+                        <div className="space-y-3">
                           <div className="flex items-start gap-2">
                             <Target className="h-4 w-4 text-muted-foreground mt-0.5 shrink-0" />
-                            <p className="text-muted-foreground line-clamp-2">{deal.creator_requirements}</p>
+                            <p className="text-muted-foreground line-clamp-2 leading-relaxed">{deal.creator_requirements}</p>
                           </div>
                           {deal.deliverables && (Array.isArray(deal.deliverables) || typeof deal.deliverables === 'string') && (
                             <div className="flex items-start gap-2">
@@ -124,7 +124,7 @@ export default function DealsPage() {
                                       ? JSON.parse(deal.deliverables) 
                                       : deal.deliverables.split(','))
                                 ).map((item: string, i: number) => (
-                                  <Badge key={i} variant="outline" className="text-[10px] py-0 border-border">
+                                  <Badge key={i} variant="outline" className="text-[10px] py-0 border-border/60 rounded-full font-medium">
                                     {typeof item === 'string' ? item.trim() : item}
                                   </Badge>
                                 ))}
@@ -135,7 +135,7 @@ export default function DealsPage() {
                       </CardContent>
                       
                       <CardFooter className="pt-0 pb-4">
-                        <Link href="/matches" className="inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent text-sm font-medium transition-all outline-none select-none h-8 px-2.5 w-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground border-primary/20">
+                        <Link href="/matches" className="inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent text-sm font-medium transition-all outline-none select-none h-9 px-4 w-full bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground">
                           View Matches
                         </Link>
                       </CardFooter>

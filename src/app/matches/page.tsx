@@ -83,22 +83,22 @@ export default function MatchesPage() {
                 {creators.map((creator, idx) => {
                   const insights = getMatchInsights(creator.name, deal.brand_name);
                   return (
-                    <Card key={creator.id} className="border-border bg-card shadow-sm flex flex-col hover:border-primary/50 transition-colors">
+                    <Card key={creator.id} className="border-border/60 bg-white/50 backdrop-blur-sm shadow-sm flex flex-col hover:shadow-xl hover:-translate-y-1 hover:border-primary/30 transition-all duration-300 rounded-2xl group">
                       <CardHeader className="pb-4">
                         <div className="flex items-start justify-between">
                           <div className="flex items-center gap-3">
-                            <Avatar className="h-12 w-12 border-2 border-primary/20">
-                              <AvatarFallback className="bg-primary/10 text-primary font-bold uppercase">
+                            <Avatar className="h-12 w-12 border-2 border-primary/20 group-hover:border-primary/50 transition-colors shadow-sm">
+                              <AvatarFallback className="bg-primary/10 text-primary font-serif font-bold uppercase">
                                 {creator.name.charAt(0)}
                               </AvatarFallback>
                             </Avatar>
                             <div>
-                              <CardTitle className="text-base">{creator.name}</CardTitle>
-                              <p className="text-sm text-muted-foreground">{creator.instagram_handle}</p>
+                              <CardTitle className="text-base font-serif group-hover:text-primary transition-colors">{creator.name}</CardTitle>
+                              <p className="text-sm text-muted-foreground font-medium">{creator.instagram_handle}</p>
                             </div>
                           </div>
                           {idx === 0 && (
-                            <Badge className="bg-yellow-500 text-black hover:bg-yellow-500/90 whitespace-nowrap">
+                            <Badge className="bg-gradient-to-r from-amber-200 to-yellow-400 text-yellow-900 border-none shadow-sm hover:opacity-90 whitespace-nowrap rounded-full font-semibold">
                               Best Match
                             </Badge>
                           )}
@@ -106,24 +106,24 @@ export default function MatchesPage() {
                       </CardHeader>
 
                       <CardContent className="flex-1 space-y-5">
-                        <div className="grid grid-cols-2 gap-4 bg-muted/30 p-3 rounded-lg border border-border">
+                        <div className="grid grid-cols-2 gap-4 bg-white/60 p-4 rounded-xl border border-border/50 shadow-inner">
                           <div>
-                            <p className="text-xs text-muted-foreground flex items-center gap-1">
+                            <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider flex items-center gap-1 mb-1">
                               <Users className="h-3 w-3" /> Followers
                             </p>
-                            <p className="font-semibold">{creator.followers_count?.toLocaleString() || 0}</p>
+                            <p className="font-bold text-foreground text-lg">{creator.followers_count?.toLocaleString() || 0}</p>
                           </div>
                           <div>
-                            <p className="text-xs text-muted-foreground flex items-center gap-1">
+                            <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider flex items-center gap-1 mb-1">
                               <TrendingUp className="h-3 w-3" /> Engagement
                             </p>
-                            <p className="font-semibold text-primary">{creator.engagement_rate}%</p>
+                            <p className="font-bold text-primary text-lg">{creator.engagement_rate}%</p>
                           </div>
                         </div>
 
-                        <div className="space-y-3">
+                        <div className="space-y-3 px-1">
                           <div>
-                            <p className="text-sm font-medium text-foreground mb-1 flex items-center gap-2">
+                            <p className="text-sm font-semibold text-foreground mb-1.5 flex items-center gap-2">
                               <CheckCircle2 className="h-4 w-4 text-green-500" />
                               Why they fit
                             </p>
@@ -132,20 +132,20 @@ export default function MatchesPage() {
                             </p>
                           </div>
                           
-                          <div className="flex justify-between items-center text-sm">
-                            <span className="text-muted-foreground">Estimated Reach:</span>
-                            <span className="font-medium text-foreground">{insights.estimatedReach}</span>
+                          <div className="flex justify-between items-center text-sm pt-2">
+                            <span className="text-muted-foreground font-medium">Estimated Reach:</span>
+                            <span className="font-semibold text-foreground">{insights.estimatedReach}</span>
                           </div>
                           
                           <div className="flex justify-between items-center text-sm">
-                            <span className="text-muted-foreground">Risk Level:</span>
+                            <span className="text-muted-foreground font-medium">Risk Level:</span>
                             <div className="flex items-center gap-1">
                               {insights.riskLevel === "Low" ? (
                                 <ShieldCheck className="h-4 w-4 text-green-500" />
                               ) : (
                                 <AlertTriangle className="h-4 w-4 text-yellow-500" />
                               )}
-                              <span className={insights.riskLevel === "Low" ? "text-green-500" : "text-yellow-500"}>
+                              <span className={`font-semibold ${insights.riskLevel === "Low" ? "text-green-500" : "text-yellow-600"}`}>
                                 {insights.riskLevel}
                               </span>
                             </div>
@@ -153,15 +153,15 @@ export default function MatchesPage() {
                         </div>
                       </CardContent>
 
-                      <CardFooter className="pt-4 border-t border-border mt-auto flex-col gap-3">
-                        <Badge variant="outline" className="w-full justify-center bg-primary/5 text-primary border-primary/20">
+                      <CardFooter className="pt-4 border-t border-border/40 mt-auto flex-col gap-3">
+                        <Badge variant="outline" className="w-full justify-center bg-primary/5 text-primary border-primary/20 rounded-full font-medium py-1">
                           ✨ AI Matched
                         </Badge>
                         <div className="w-full flex gap-2">
-                          <button className="w-1/2 rounded-lg border border-border text-sm font-medium py-2 hover:bg-muted transition-colors">
+                          <button className="w-1/2 rounded-xl border border-border/60 bg-white/50 text-sm font-semibold py-2.5 hover:bg-black/5 hover:text-foreground transition-all shadow-sm">
                             View Profile
                           </button>
-                          <button className="w-1/2 rounded-lg bg-primary text-primary-foreground text-sm font-medium py-2 hover:bg-primary/90 transition-colors">
+                          <button className="w-1/2 rounded-xl bg-primary text-primary-foreground text-sm font-semibold py-2.5 hover:bg-primary/90 transition-all shadow-sm hover:shadow-md">
                             Approve Match
                           </button>
                         </div>

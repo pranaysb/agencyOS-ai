@@ -72,7 +72,7 @@ export default function LeadsPage() {
         </Button>
       </div>
 
-      <Card className="border-border bg-card">
+      <Card className="border-border/60 bg-white/50 backdrop-blur-sm shadow-sm">
         <CardHeader className="pb-4">
           <div className="flex flex-col md:flex-row gap-4 items-center">
             <div className="relative w-full md:w-96">
@@ -80,7 +80,7 @@ export default function LeadsPage() {
               <Input
                 type="search"
                 placeholder="Search leads..."
-                className="pl-8 bg-background border-border"
+                className="pl-8 bg-white/60 border-border/60 focus-visible:ring-primary/30 rounded-lg shadow-sm"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -88,7 +88,7 @@ export default function LeadsPage() {
             <div className="flex w-full md:w-auto gap-4 items-center">
               <Filter className="h-4 w-4 text-muted-foreground hidden md:block" />
               <Select value={category} onValueChange={(val) => setCategory(val || "All")}>
-                <SelectTrigger className="w-[140px] bg-background border-border">
+                <SelectTrigger className="w-[140px] bg-white/60 border-border/60 shadow-sm rounded-lg">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
@@ -100,7 +100,7 @@ export default function LeadsPage() {
               </Select>
 
               <Select value={urgency} onValueChange={(val) => setUrgency(val || "All")}>
-                <SelectTrigger className="w-[120px] bg-background border-border">
+                <SelectTrigger className="w-[120px] bg-white/60 border-border/60 shadow-sm rounded-lg">
                   <SelectValue placeholder="Urgency" />
                 </SelectTrigger>
                 <SelectContent>
@@ -112,7 +112,7 @@ export default function LeadsPage() {
               </Select>
 
               <Select value={status} onValueChange={(val) => setStatus(val || "All")}>
-                <SelectTrigger className="w-[120px] bg-background border-border">
+                <SelectTrigger className="w-[120px] bg-white/60 border-border/60 shadow-sm rounded-lg">
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
                 <SelectContent>
@@ -126,35 +126,35 @@ export default function LeadsPage() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="rounded-md border border-border">
+          <div className="rounded-xl border border-border/50 bg-white/40 overflow-hidden shadow-sm">
             <Table>
-              <TableHeader>
-                <TableRow className="border-border hover:bg-transparent">
-                  <TableHead>Sender</TableHead>
-                  <TableHead className="w-[40%]">Message Preview</TableHead>
-                  <TableHead>Category</TableHead>
-                  <TableHead>Urgency</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead className="text-right">Time</TableHead>
+              <TableHeader className="bg-muted/30">
+                <TableRow className="border-b border-border/50 hover:bg-transparent">
+                  <TableHead className="font-medium text-muted-foreground uppercase text-xs tracking-wider">Sender</TableHead>
+                  <TableHead className="w-[40%] font-medium text-muted-foreground uppercase text-xs tracking-wider">Message Preview</TableHead>
+                  <TableHead className="font-medium text-muted-foreground uppercase text-xs tracking-wider">Category</TableHead>
+                  <TableHead className="font-medium text-muted-foreground uppercase text-xs tracking-wider">Urgency</TableHead>
+                  <TableHead className="font-medium text-muted-foreground uppercase text-xs tracking-wider">Status</TableHead>
+                  <TableHead className="text-right font-medium text-muted-foreground uppercase text-xs tracking-wider">Time</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {isLoading ? (
                   <TableRow>
-                    <TableCell colSpan={6} className="h-24 text-center text-muted-foreground animate-pulse">
+                    <TableCell colSpan={6} className="h-32 text-center text-muted-foreground animate-pulse border-none">
                       Loading leads...
                     </TableCell>
                   </TableRow>
                 ) : filteredLeads.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={6} className="h-24 text-center text-muted-foreground">
+                    <TableCell colSpan={6} className="h-32 text-center text-muted-foreground border-none">
                       No leads found matching your filters.
                     </TableCell>
                   </TableRow>
                 ) : (
                   filteredLeads.map((lead) => (
-                    <TableRow key={lead.id} className="border-border hover:bg-muted/50 transition-colors">
-                      <TableCell className="font-medium whitespace-nowrap">
+                    <TableRow key={lead.id} className="border-b border-border/30 hover:bg-black/[0.02] transition-colors border-none group">
+                      <TableCell className="font-medium whitespace-nowrap group-hover:text-primary transition-colors">
                         {lead.sender_name}
                       </TableCell>
                       <TableCell>
@@ -163,12 +163,12 @@ export default function LeadsPage() {
                         </p>
                       </TableCell>
                       <TableCell>
-                        <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">
+                        <Badge variant="outline" className="bg-primary/5 text-primary border-primary/10 rounded-full font-medium">
                           {lead.category}
                         </Badge>
                       </TableCell>
                       <TableCell>
-                        <Badge variant="outline" className={getUrgencyColor(lead.urgency)}>
+                        <Badge variant="outline" className={`${getUrgencyColor(lead.urgency)} rounded-full font-medium`}>
                           {lead.urgency}
                         </Badge>
                       </TableCell>
@@ -177,7 +177,7 @@ export default function LeadsPage() {
                           {lead.status}
                         </span>
                       </TableCell>
-                      <TableCell className="text-right text-muted-foreground text-sm whitespace-nowrap">
+                      <TableCell className="text-right text-muted-foreground text-sm whitespace-nowrap font-medium">
                         {new Date(lead.created_at).toLocaleDateString()}
                       </TableCell>
                     </TableRow>
